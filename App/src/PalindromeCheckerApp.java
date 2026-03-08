@@ -1,32 +1,36 @@
+import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 public class PalindromeCheckerApp {
-    public static void main(String[] args) {
+     public static void main(String[] args) {
 
-        // Original string
-        String text = "madam";
+         String text = "madam";
 
-        // Create stack
-        Stack<Character> stack = new Stack<>();
+         Stack<Character> stack = new Stack<>();
+         Queue<Character> queue = new LinkedList<>();
 
-        // Push characters into stack
-        for (int i = 0; i < text.length(); i++) {
-            stack.push(text.charAt(i));
-        }
+         // Push to stack and enqueue to queue
+         for (int i = 0; i < text.length(); i++) {
+             char ch = text.charAt(i);
+             stack.push(ch);      // LIFO
+             queue.add(ch);       // FIFO
+         }
 
-        boolean isPalindrome = true;
+         boolean isPalindrome = true;
 
-        // Pop characters and compare
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
-        }
+         // Compare dequeue (FIFO) and pop (LIFO)
+         while (!stack.isEmpty() && !queue.isEmpty()) {
+             if (stack.pop() != queue.remove()) {
+                 isPalindrome = false;
+                 break;
+             }
+         }
 
-        // Print result
-        if (isPalindrome) {
-            System.out.println("The string \"" + text + "\" is a Palindrome.");
-        } else {
-            System.out.println("The string \"" + text + "\" is NOT a Palindrome.");
-        }
-    }
+         // Print result
+         if (isPalindrome) {
+             System.out.println("The string \"" + text + "\" is a Palindrome.");
+         } else {
+             System.out.println("The string \"" + text + "\" is NOT a Palindrome.");
+         }
+     }
 }
