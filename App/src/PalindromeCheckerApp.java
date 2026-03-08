@@ -1,22 +1,31 @@
 public class PalindromeCheckerApp {
-    public static void main(String[] args) {
+     public static void main(String[] args) {
 
-        // Original string
-        String original = "madam";
+         // Original string
+         String text = "madam";
 
-        // Variable to store reversed string
-        String reversed = "";
+         // Convert string to character array
+         char[] chars = text.toCharArray();
 
-        // Reverse the string using a for loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
-        }
+         int start = 0;
+         int end = chars.length - 1;
+         boolean isPalindrome = true;
 
-        // Compare original and reversed strings
-        if (original.equals(reversed)) {
-            System.out.println("The string \"" + original + "\" is a Palindrome.");
-        } else {
-            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
-        }
-    }
+         // Two-pointer comparison
+         while (start < end) {
+             if (chars[start] != chars[end]) {
+                 isPalindrome = false;
+                 break;
+             }
+             start++;
+             end--;
+         }
+
+         // Display result
+         if (isPalindrome) {
+             System.out.println("The string \"" + text + "\" is a Palindrome.");
+         } else {
+             System.out.println("The string \"" + text + "\" is NOT a Palindrome.");
+         }
+     }
 }
