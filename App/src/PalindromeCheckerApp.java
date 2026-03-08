@@ -1,31 +1,32 @@
 public class PalindromeCheckerApp {
-     public static void main(String[] args) {
+    public static void main(String[] args) {
 
-         // Original string
-         String text = "madam";
+        // Original string
+        String text = "madam";
 
-         // Convert string to character array
-         char[] chars = text.toCharArray();
+        // Create stack
+        Stack<Character> stack = new Stack<>();
 
-         int start = 0;
-         int end = chars.length - 1;
-         boolean isPalindrome = true;
+        // Push characters into stack
+        for (int i = 0; i < text.length(); i++) {
+            stack.push(text.charAt(i));
+        }
 
-         // Two-pointer comparison
-         while (start < end) {
-             if (chars[start] != chars[end]) {
-                 isPalindrome = false;
-                 break;
-             }
-             start++;
-             end--;
-         }
+        boolean isPalindrome = true;
 
-         // Display result
-         if (isPalindrome) {
-             System.out.println("The string \"" + text + "\" is a Palindrome.");
-         } else {
-             System.out.println("The string \"" + text + "\" is NOT a Palindrome.");
-         }
-     }
+        // Pop characters and compare
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Print result
+        if (isPalindrome) {
+            System.out.println("The string \"" + text + "\" is a Palindrome.");
+        } else {
+            System.out.println("The string \"" + text + "\" is NOT a Palindrome.");
+        }
+    }
 }
