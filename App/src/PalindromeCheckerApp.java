@@ -1,31 +1,40 @@
+import java.util.Stack;
+
+class PalindromeChecker {
+
+    // Method to check palindrome
+    public boolean checkPalindrome(String text) {
+
+        Stack<Character> stack = new Stack<>();
+
+        // Push characters into stack
+        for (int i = 0; i < text.length(); i++) {
+            stack.push(text.charAt(i));
+        }
+
+        // Compare with popped characters
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) != stack.pop()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String text = "A man a plan a canal Panama";
+        String text = "madam";
 
-        // Normalize string: remove spaces and convert to lowercase
-        String normalized = text.replaceAll("\\s+", "").toLowerCase();
+        PalindromeChecker checker = new PalindromeChecker();
 
-        int start = 0;
-        int end = normalized.length() - 1;
-        boolean isPalindrome = true;
-
-        // Compare characters using two-pointer approach
-        while (start < end) {
-            if (normalized.charAt(start) != normalized.charAt(end)) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
-        }
-
-        // Print result
-        if (isPalindrome) {
-            System.out.println("\"" + text + "\" is a Palindrome (ignoring spaces and case).");
+        if (checker.checkPalindrome(text)) {
+            System.out.println("The string \"" + text + "\" is a Palindrome.");
         } else {
-            System.out.println("\"" + text + "\" is NOT a Palindrome.");
+            System.out.println("The string \"" + text + "\" is NOT a Palindrome.");
         }
     }
 }
